@@ -1,0 +1,4 @@
+metro,trough_date,trough_index,first_50_pct_date_3mma,first_75_pct_date_3mma,first_90_pct_date_3mma,latest_date,latest_index
+Chicago,2020-04-01,19.9,2022-07-01,Not reached,Not reached,2025-12-01,62.7
+New York,2020-04-01,12.2,2021-07-01,2023-03-01,Not reached,2025-12-01,90.1
+San Francisco,2020-04-01,11.3,2022-11-01,Not reached,Not reached,2025-12-01,39.4

@@ -1,0 +1,10 @@
+metro,period,avg_index
+Chicago,Pre-COVID,100.0
+Chicago,Recovery,58.8
+Chicago,Shock,35.6
+New York,Pre-COVID,100.0
+New York,Recovery,78.1
+New York,Shock,42.0
+San Francisco,Pre-COVID,100.0
+San Francisco,Recovery,53.2
+San Francisco,Shock,26.2
