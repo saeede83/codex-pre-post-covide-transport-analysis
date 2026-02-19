@@ -32,6 +32,7 @@ Codex executed the full pipeline end to end in one workflow.
 
 All analysis artifacts are available here:
 
+- Live HTML (GitHub Pages): `https://saeede83.github.io/codex-pre-post-covide-transport-analysis/`
 - Repository: `https://github.com/saeede83/codex-pre-post-covide-transport-analysis`
 - Analysis code: `https://github.com/saeede83/codex-pre-post-covide-transport-analysis/blob/codex/initial-analysis/src/analyze_transit.py`
 - HTML report: `https://github.com/saeede83/codex-pre-post-covide-transport-analysis/blob/codex/initial-analysis/output/transit_deep_dive_report.html`
