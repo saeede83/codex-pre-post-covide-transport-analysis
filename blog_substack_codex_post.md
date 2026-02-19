@@ -30,16 +30,17 @@ Codex executed the full pipeline end to end in one workflow.
 
 ## Repository Links
 
-Replace `<REPO_BASE>` with your GitHub repository URL (for example `https://github.com/<user>/<repo>`).
+All analysis artifacts are available here:
 
-- Analysis code: `<REPO_BASE>/blob/main/src/analyze_transit.py`
-- HTML report: `<REPO_BASE>/blob/main/output/transit_deep_dive_report.html`
-- Markdown report: `<REPO_BASE>/blob/main/output/transit_deep_dive_report.md`
-- Processed tables: `<REPO_BASE>/tree/main/data/processed`
-- Chart 1 (ridership index): `<REPO_BASE>/blob/main/output/metro_ridership_index.png`
-- Chart 2 (monthly trips): `<REPO_BASE>/blob/main/output/metro_monthly_trips.png`
-- Chart 3 (rail vs bus): `<REPO_BASE>/blob/main/output/rail_bus_recovery_facets.png`
-- Chart 4 (mode share shift): `<REPO_BASE>/blob/main/output/mode_share_shift.png`
+- Repository: `https://github.com/saeede83/codex-pre-post-covide-transport-analysis`
+- Analysis code: `https://github.com/saeede83/codex-pre-post-covide-transport-analysis/blob/codex/initial-analysis/src/analyze_transit.py`
+- HTML report: `https://github.com/saeede83/codex-pre-post-covide-transport-analysis/blob/codex/initial-analysis/output/transit_deep_dive_report.html`
+- Markdown report: `https://github.com/saeede83/codex-pre-post-covide-transport-analysis/blob/codex/initial-analysis/output/transit_deep_dive_report.md`
+- Processed tables: `https://github.com/saeede83/codex-pre-post-covide-transport-analysis/tree/codex/initial-analysis/data/processed`
+- Chart 1 (ridership index): `https://github.com/saeede83/codex-pre-post-covide-transport-analysis/blob/codex/initial-analysis/output/metro_ridership_index.png`
+- Chart 2 (monthly trips): `https://github.com/saeede83/codex-pre-post-covide-transport-analysis/blob/codex/initial-analysis/output/metro_monthly_trips.png`
+- Chart 3 (rail vs bus): `https://github.com/saeede83/codex-pre-post-covide-transport-analysis/blob/codex/initial-analysis/output/rail_bus_recovery_facets.png`
+- Chart 4 (mode share shift): `https://github.com/saeede83/codex-pre-post-covide-transport-analysis/blob/codex/initial-analysis/output/mode_share_shift.png`
 
 ## Why this matters
 
