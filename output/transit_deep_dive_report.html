@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Public Transport Recovery Deep Dive</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --text: #17202a;
+      --muted: #5d6d7e;
+      --accent: #0b5fff;
+      --border: #dfe6ee;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    .wrap {
+      max-width: 1080px;
+      margin: 24px auto 48px;
+      padding: 0 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 18px 8px;
+      margin-bottom: 14px;
+    }
+    h1, h2, h3 {
+      margin-top: 0;
+    }
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 1.2rem;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    p, li {
+      color: var(--text);
+    }
+    .muted {
+      color: var(--muted);
+    }
+    .tldr li {
+      margin-bottom: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 12px;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #f1f4f8;
+    }
+    .figure {
+      margin: 12px 0 22px;
+    }
+    .figure img {
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .caption {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Public Transport Recovery Deep Dive (NYC, San Francisco, Chicago)</h1>
+      <ul class="tldr">
+        <li>Ridership collapsed in all three metros in April 2020, to about <strong>11% to 20%</strong> of pre-COVID seasonal baseline.</li>
+        <li>By 2025, New York recovered the most (<strong>86.7%</strong> of 2019 annual volume), Chicago is mid-recovery (<strong>70.0%</strong>), and San Francisco lags (<strong>58.9%</strong>).</li>
+        <li>Bus recovered better than rail in each metro, strongest in San Francisco (bus share change <strong>+10.9 pp</strong> vs 2019).</li>
+        <li>Recovery appears structurally uneven, with persistent weakness in commuter-oriented rail demand.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Data, Source, and Methodology</h2>
+      <ul>
+        <li><strong>Data nature:</strong> Monthly <em>Unlinked Passenger Trips (UPT)</em> from NTD; counts boardings rather than unique riders.</li>
+        <li><strong>Source:</strong> U.S. DOT / FTA NTD Monthly Modal Time Series:
+          <a href="https://data.transportation.gov/Public-Transit/Monthly-Modal-Time-Series-by-Mode-of-Transportation-/5ti2-5uiv">dataset link</a>.
+        </li>
+        <li><strong>Coverage:</strong> January 2014 through December 2025.</li>
+        <li><strong>Metro definitions:</strong> New York (MTA NYCT rail + bus), San Francisco (BART rail + Muni rail + bus), Chicago (CTA rail + bus).</li>
+        <li><strong>Baseline:</strong> Same-calendar-month average over 2014-2019.</li>
+        <li><strong>Main metric:</strong> Index = monthly UPT / baseline UPT for same month × 100.</li>
+      </ul>
+      <p class="muted">Interpretation note: this is a descriptive trend analysis, not a causal model.</p>
+    </div>
+
+    <div class="card">
+      <h2>Insight 1: Recovery paths diverged after a common COVID shock</h2>
+      <p><strong>Interpretation:</strong> All three metros experienced extreme initial collapse, but long-run recovery paths separated substantially by city.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metro</th>
+            <th>Trough (Apr 2020 index)</th>
+            <th>First 50% (3MMA)</th>
+            <th>First 75% (3MMA)</th>
+            <th>2025 Avg Index</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>New York</td><td>12.2</td><td>2021-07</td><td>2023-03</td><td>86.7</td></tr>
+          <tr><td>Chicago</td><td>19.9</td><td>2022-07</td><td>Not reached</td><td>65.2</td></tr>
+          <tr><td>San Francisco</td><td>11.3</td><td>2022-11</td><td>Not reached</td><td>57.9</td></tr>
+        </tbody>
+      </table>
+      <div class="figure">
+        <img src="./metro_ridership_index.png" alt="Metro ridership index over time">
+        <div class="caption">Figure 1. Baseline-normalized ridership index by metro (100 = 2014-2019 same-month average).</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Insight 2: Absolute volumes remain below pre-COVID scale</h2>
+      <p><strong>Interpretation:</strong> Percentage recovery improved, but absolute monthly and annual rider volumes remain materially lower than 2019 in every city.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metro</th>
+            <th>2019 Annual UPT</th>
+            <th>2025 Annual UPT</th>
+            <th>2025 vs 2019</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>New York</td><td>~3.49B</td><td>~3.03B</td><td>86.7%</td></tr>
+          <tr><td>Chicago</td><td>~395M</td><td>~277M</td><td>70.0%</td></tr>
+          <tr><td>San Francisco</td><td>~182M</td><td>~107M</td><td>58.9%</td></tr>
+        </tbody>
+      </table>
+      <div class="figure">
+        <img src="./metro_monthly_trips.png" alt="Monthly trips by metro">
+        <div class="caption">Figure 2. Monthly unlinked passenger trips (millions).</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Insight 3: Bus outperformed rail in post-COVID recovery</h2>
+      <p><strong>Interpretation:</strong> Rail-heavy, commute-oriented patterns recovered more slowly than bus usage, especially in San Francisco and Chicago.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metro</th>
+            <th>Bus Index (2025 Avg)</th>
+            <th>Rail Index (2025 Avg)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>New York</td><td>89.8</td><td>85.9</td></tr>
+          <tr><td>Chicago</td><td>71.7</td><td>58.0</td></tr>
+          <tr><td>San Francisco</td><td>77.7</td><td>46.3</td></tr>
+        </tbody>
+      </table>
+      <div class="figure">
+        <img src="./rail_bus_recovery_facets.png" alt="Rail versus bus recovery by city">
+        <div class="caption">Figure 3. Rail and bus baseline-normalized recovery paths by metro.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Insight 4: Mode share shifted toward bus</h2>
+      <p><strong>Interpretation:</strong> In all three metros, bus gained share relative to rail versus 2019, implying lasting demand rebalancing.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metro</th>
+            <th>Bus Share (2019)</th>
+            <th>Bus Share (2025)</th>
+            <th>Change (pp)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>New York</td><td>20.1%</td><td>21.8%</td><td>+1.7</td></tr>
+          <tr><td>Chicago</td><td>52.3%</td><td>57.6%</td><td>+5.3</td></tr>
+          <tr><td>San Francisco</td><td>38.2%</td><td>49.1%</td><td>+10.9</td></tr>
+        </tbody>
+      </table>
+      <div class="figure">
+        <img src="./mode_share_shift.png" alt="Mode share shift">
+        <div class="caption">Figure 4. Bus vs rail share shift from pre-COVID through 2025.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Detailed Findings</h2>
+      <ul>
+        <li>All three metros reached their minimum index in <strong>April 2020</strong>.</li>
+        <li>New York is the only city in this set to reach a sustained <strong>75 index</strong> recovery threshold by 2025.</li>
+        <li>San Francisco remains the furthest from baseline, mainly due to rail underperformance.</li>
+        <li>Chicago has moderate system-level recovery but clear rail weakness relative to bus.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Caveats</h2>
+      <ul>
+        <li>UPT counts boardings, so transfer behavior affects totals.</li>
+        <li>Metro aggregation choices prioritize comparability and may not match every local system report scope.</li>
+        <li>Findings are descriptive trends and should not be read as causal attribution.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
